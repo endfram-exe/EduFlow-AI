@@ -21,8 +21,8 @@ export function Sidebar() {
           <GraduationCap size={21} />
         </div>
         <div>
-          <p className="text-sm font-semibold text-slate-950 dark:text-white">EduFlow AI</p>
-          <p className="text-xs text-slate-500">School ERP Platform</p>
+          <p className="text-sm font-semibold text-slate-950 dark:text-white">TimeForge</p>
+          <p className="text-xs text-slate-500">AI-Powered Academic Operating System</p>
         </div>
       </div>
       <nav className="mt-8 space-y-1">

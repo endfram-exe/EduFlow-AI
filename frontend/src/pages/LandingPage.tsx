@@ -18,7 +18,7 @@ export function LandingPage() {
           <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-white">
             <GraduationCap size={22} />
           </div>
-          <span className="text-sm font-semibold text-slate-950 dark:text-white">EduFlow AI</span>
+          <span className="text-sm font-semibold text-slate-950 dark:text-white">TimeForge</span>
         </div>
         <div className="flex items-center gap-3">
           <ThemeToggle />
@@ -30,8 +30,8 @@ export function LandingPage() {
 
       <section className="mx-auto grid max-w-7xl gap-8 px-6 pb-12 pt-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600">The AI Powered School ERP Platform</p>
-          <h1 className="mt-4 max-w-3xl text-5xl font-semibold leading-tight text-slate-950 dark:text-white md:text-6xl">EduFlow AI</h1>
+          <p className="text-sm font-semibold uppercase tracking-wide text-cyan-600">The AI-Powered Academic Operating System</p>
+          <h1 className="mt-4 max-w-3xl text-5xl font-semibold leading-tight text-slate-950 dark:text-white md:text-6xl">TimeForge</h1>
           <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
             A modern SaaS command center for school scheduling, academics, facilities, analytics, and intelligent operations.
           </p>

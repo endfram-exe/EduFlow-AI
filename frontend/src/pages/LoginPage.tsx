@@ -13,7 +13,7 @@ export function LoginPage() {
           </div>
           <div>
             <h1 className="text-xl font-semibold text-slate-950 dark:text-white">Welcome back</h1>
-            <p className="text-sm text-slate-500">Sign in to EduFlow AI</p>
+            <p className="text-sm text-slate-500">Sign in to TimeForge</p>
           </div>
         </div>
         <form className="space-y-4">
@@ -24,7 +24,7 @@ export function LoginPage() {
           </Link>
         </form>
         <p className="mt-5 text-center text-sm text-slate-500">
-          New to EduFlow AI? <Link className="font-semibold text-primary" to="/register">Create workspace</Link>
+          New to TimeForge? <Link className="font-semibold text-primary" to="/register">Create workspace</Link>
         </p>
       </Card>
     </main>

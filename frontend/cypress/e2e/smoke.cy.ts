@@ -1,7 +1,7 @@
-describe('EduFlow AI shell', () => {
+describe('TimeForge shell', () => {
   it('loads the landing page', () => {
     cy.visit('/');
-    cy.contains('EduFlow AI');
+    cy.contains('TimeForge');
     cy.contains('Open dashboard');
   });
 });

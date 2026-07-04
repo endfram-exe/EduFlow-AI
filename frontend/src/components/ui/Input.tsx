@@ -1,20 +1,41 @@
-import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
+import { type InputHTMLAttributes, type TextareaHTMLAttributes, forwardRef } from 'react';
 import { cn } from '../../lib/utils';
 
-export function Input({ className, ...props }: InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <input
-      className={cn('h-11 w-full rounded-input border border-input bg-surface px-3 text-sm text-foreground transition duration-hover placeholder:text-muted focus:border-secondary', className)}
-      {...props}
-    />
-  );
-}
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 
-export function Textarea({ className, ...props }: TextareaHTMLAttributes<HTMLTextAreaElement>) {
-  return (
-    <textarea
-      className={cn('min-h-28 w-full rounded-input border border-input bg-surface px-3 py-3 text-sm text-foreground transition duration-hover placeholder:text-muted focus:border-secondary', className)}
-      {...props}
-    />
-  );
-}
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ className, type, ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        className={cn(
+          'flex h-11 w-full rounded-input border border-input bg-surface px-3 py-2 text-sm text-foreground transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 hover:border-muted',
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+Input.displayName = 'Input';
+
+export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
+
+const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
+  ({ className, ...props }, ref) => {
+    return (
+      <textarea
+        className={cn(
+          'flex min-h-[112px] w-full rounded-input border border-input bg-surface px-3 py-3 text-sm text-foreground transition-colors placeholder:text-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 hover:border-muted',
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+Textarea.displayName = 'Textarea';
+
+export { Input, Textarea };

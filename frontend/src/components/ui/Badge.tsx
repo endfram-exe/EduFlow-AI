@@ -1,21 +1,37 @@
-import type { HTMLAttributes } from 'react';
+import { type HTMLAttributes, forwardRef } from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 
-type BadgeTone = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'neutral';
+const badgeVariants = cva(
+  'inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2',
+  {
+    variants: {
+      tone: {
+        primary: 'bg-primary/10 text-primary hover:bg-primary/20',
+        secondary: 'bg-secondary/15 text-foreground hover:bg-secondary/25',
+        success: 'bg-success/10 text-success hover:bg-success/20',
+        warning: 'bg-warning/15 text-foreground hover:bg-warning/25',
+        danger: 'bg-danger/10 text-danger hover:bg-danger/20',
+        neutral: 'bg-accent text-subtle hover:bg-accent/80',
+      },
+    },
+    defaultVariants: {
+      tone: 'neutral',
+    },
+  }
+);
 
-const tones: Record<BadgeTone, string> = {
-  primary: 'bg-primary/10 text-primary',
-  secondary: 'bg-secondary/15 text-foreground',
-  success: 'bg-success/10 text-success',
-  warning: 'bg-warning/15 text-foreground',
-  danger: 'bg-danger/10 text-danger',
-  neutral: 'bg-accent text-subtle',
-};
+export interface BadgeProps extends HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {}
 
-type BadgeProps = HTMLAttributes<HTMLSpanElement> & {
-  tone?: BadgeTone;
-};
+const Badge = forwardRef<HTMLSpanElement, BadgeProps>(({ className, tone, ...props }, ref) => {
+  return (
+    <span
+      ref={ref}
+      className={cn(badgeVariants({ tone }), className)}
+      {...props}
+    />
+  );
+});
+Badge.displayName = 'Badge';
 
-export function Badge({ className, tone = 'neutral', ...props }: BadgeProps) {
-  return <span className={cn('inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold', tones[tone], className)} {...props} />;
-}
+export { Badge, badgeVariants };
