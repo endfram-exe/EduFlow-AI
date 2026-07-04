@@ -1,0 +1,56 @@
+# ------------------------------------------------------------------------------
+# EduFlow AI - Git Attributes
+# Ensures consistent line endings across Windows, Linux, and macOS
+# ------------------------------------------------------------------------------
+
+# Auto detect text files and normalize to LF in the repository
+* text=auto eol=lf
+
+# Windows scripts
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Shell scripts
+*.sh text eol=lf
+
+# Source Code
+*.java text
+*.kt text
+*.kts text
+*.xml text
+*.yml text
+*.yaml text
+*.json text
+*.md text
+*.properties text
+*.sql text
+*.html text
+*.css text
+*.scss text
+*.js text
+*.jsx text
+*.ts text
+*.tsx text
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+*.ico binary
+*.pdf binary
+*.jar binary
+*.zip binary
+*.7z binary
+*.exe binary
+
+# Images
+*.webp binary
+
+# Fonts
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
