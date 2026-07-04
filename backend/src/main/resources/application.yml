@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: eduflow-ai
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/eduflow?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${SPRING_DATASOURCE_USERNAME:eduflow}
+    password: ${SPRING_DATASOURCE_PASSWORD:eduflow_password}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+server:
+  port: ${SERVER_PORT:8080}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+eduflow:
+  security:
+    jwt:
+      issuer: eduflow-ai
+      expiration-minutes: 60
+      secret: ${EDUFLOW_SECURITY_JWT_SECRET:change-this-secret-to-a-strong-256-bit-production-value}
+  cors:
+    allowed-origins:
+      - http://localhost:5173
+      - http://localhost:3000
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

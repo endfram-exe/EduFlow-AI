@@ -1,0 +1,4 @@
+# Database
+
+This folder contains the Database layer for EduFlow AI. It is intentionally separated to keep the SaaS platform modular, testable, and deployment-ready.
+

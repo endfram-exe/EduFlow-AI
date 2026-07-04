@@ -1,0 +1,27 @@
+.DS_Store
+Thumbs.db
+
+# Java
+backend/target/
+*.class
+*.log
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Cypress
+frontend/cypress/videos/
+frontend/cypress/screenshots/
