@@ -11,21 +11,52 @@ const data = [
 
 export function DashboardChart() {
   return (
-    <div className="h-72">
+    <div className="h-72 w-full pt-4">
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={data}>
+        <AreaChart data={data} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
           <defs>
             <linearGradient id="utilization" x1="0" x2="0" y1="0" y2="1">
-              <stop offset="5%" stopColor="#0b3b8f" stopOpacity={0.28} />
-              <stop offset="95%" stopColor="#0b3b8f" stopOpacity={0} />
+              <stop offset="5%" stopColor="hsl(var(--tf-primary))" stopOpacity={0.28} />
+              <stop offset="95%" stopColor="hsl(var(--tf-primary))" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-          <XAxis dataKey="month" tickLine={false} axisLine={false} />
-          <YAxis tickLine={false} axisLine={false} />
-          <Tooltip />
-          <Area type="monotone" dataKey="utilization" stroke="#0b3b8f" fill="url(#utilization)" strokeWidth={3} />
-          <Area type="monotone" dataKey="coverage" stroke="#06b6d4" fill="transparent" strokeWidth={3} />
+          <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--tf-border))" vertical={false} />
+          <XAxis 
+            dataKey="month" 
+            tickLine={false} 
+            axisLine={false} 
+            tick={{ fill: 'hsl(var(--tf-muted))', fontSize: 12 }} 
+            dy={10}
+          />
+          <YAxis 
+            tickLine={false} 
+            axisLine={false} 
+            tick={{ fill: 'hsl(var(--tf-muted))', fontSize: 12 }}
+          />
+          <Tooltip 
+            contentStyle={{ 
+              backgroundColor: 'hsl(var(--tf-surface))', 
+              borderColor: 'hsl(var(--tf-border))',
+              borderRadius: 'var(--tf-radius-md)',
+              boxShadow: 'var(--tf-shadow-md)',
+              color: 'hsl(var(--tf-text-primary))'
+            }} 
+            itemStyle={{ color: 'hsl(var(--tf-text-primary))' }}
+          />
+          <Area 
+            type="monotone" 
+            dataKey="utilization" 
+            stroke="hsl(var(--tf-primary))" 
+            fill="url(#utilization)" 
+            strokeWidth={3} 
+          />
+          <Area 
+            type="monotone" 
+            dataKey="coverage" 
+            stroke="hsl(var(--tf-secondary))" 
+            fill="transparent" 
+            strokeWidth={3} 
+          />
         </AreaChart>
       </ResponsiveContainer>
     </div>

@@ -11,7 +11,10 @@ type BentoCardProps = {
   className?: string;
   children?: ReactNode;
 };
-
+/**
+ * @deprecated Use `StatCard` or `InsightWidget` from `patterns/dashboard` instead.
+ * This component will be removed once all usages have been migrated.
+ */
 export function BentoCard({ title, value, meta, icon, className, children }: BentoCardProps) {
   return (
     <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}>

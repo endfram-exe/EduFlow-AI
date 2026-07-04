@@ -1,6 +1,7 @@
 import { BarChart3, Bell, Bot, CalendarDays, GraduationCap, LayoutDashboard, Settings, Users } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { cn } from '../lib/utils';
+import { motion } from 'framer-motion';
 
 const navItems = [
   { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -8,21 +9,21 @@ const navItems = [
   { label: 'Teachers', href: '/dashboard?view=teachers', icon: Users },
   { label: 'Timetable', href: '/dashboard?view=timetable', icon: CalendarDays },
   { label: 'Analytics', href: '/dashboard?view=analytics', icon: BarChart3 },
-  { label: 'AI', href: '/dashboard?view=ai', icon: Bot },
+  { label: 'AI Insights', href: '/dashboard?view=ai', icon: Bot },
   { label: 'Notifications', href: '/dashboard?view=notifications', icon: Bell },
   { label: 'Settings', href: '/settings', icon: Settings },
 ];
 
 export function Sidebar() {
   return (
-    <aside className="hidden min-h-screen w-72 border-r border-slate-200/70 bg-white/78 px-4 py-5 backdrop-blur-xl dark:border-slate-800 dark:bg-slate-950/76 lg:block">
+    <aside className="hidden min-h-screen w-72 border-r border-border bg-surface/80 px-4 py-5 backdrop-blur-xl lg:block">
       <div className="flex items-center gap-3 px-2">
-        <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-white">
+        <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary text-primary-foreground shadow-sm">
           <GraduationCap size={21} />
         </div>
         <div>
-          <p className="text-sm font-semibold text-slate-950 dark:text-white">TimeForge</p>
-          <p className="text-xs text-slate-500">AI-Powered Academic Operating System</p>
+          <p className="text-sm font-semibold text-foreground tracking-tight">TimeForge</p>
+          <p className="text-[11px] font-medium text-subtle uppercase tracking-wider">AI-Powered OS</p>
         </div>
       </div>
       <nav className="mt-8 space-y-1">
@@ -32,13 +33,27 @@ export function Sidebar() {
             to={item.href}
             className={({ isActive }) =>
               cn(
-                'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-cyan-50 hover:text-primary dark:text-slate-300 dark:hover:bg-slate-900',
-                isActive && 'bg-cyan-50 text-primary dark:bg-slate-900 dark:text-cyan-200',
+                'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors duration-200',
+                isActive 
+                  ? 'bg-accent text-foreground' 
+                  : 'text-subtle hover:bg-accent/50 hover:text-foreground'
               )
             }
           >
-            <item.icon size={18} />
-            {item.label}
+            {({ isActive }) => (
+              <>
+                {isActive && (
+                  <motion.div
+                    layoutId="sidebar-active"
+                    className="absolute inset-0 rounded-lg bg-accent"
+                    initial={false}
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
+                <item.icon size={18} className="relative z-10" />
+                <span className="relative z-10">{item.label}</span>
+              </>
+            )}
           </NavLink>
         ))}
       </nav>
