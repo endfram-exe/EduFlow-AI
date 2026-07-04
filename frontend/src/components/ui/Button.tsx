@@ -1,24 +1,35 @@
 import type { ButtonHTMLAttributes } from 'react';
 import { cn } from '../../lib/utils';
 
-type ButtonVariant = 'primary' | 'secondary' | 'ghost';
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+type ButtonSize = 'sm' | 'md' | 'lg' | 'icon';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: ButtonVariant;
+  size?: ButtonSize;
 };
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-primary-foreground shadow-soft hover:bg-blue-900',
-  secondary: 'border border-slate-200 bg-white/85 text-slate-900 hover:bg-cyan-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-50',
-  ghost: 'text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800',
+  primary: 'bg-primary text-primary-foreground shadow-soft hover:brightness-95',
+  secondary: 'border border-border bg-surface text-foreground hover:bg-accent',
+  ghost: 'text-subtle hover:bg-accent hover:text-foreground',
+  danger: 'bg-danger text-danger-foreground shadow-soft hover:brightness-95',
 };
 
-export function Button({ className, variant = 'primary', ...props }: ButtonProps) {
+const sizes: Record<ButtonSize, string> = {
+  sm: 'h-9 px-3 text-sm',
+  md: 'h-10 px-4 text-sm',
+  lg: 'h-12 px-5 text-base',
+  icon: 'h-10 w-10 px-0',
+};
+
+export function Button({ className, variant = 'primary', size = 'md', ...props }: ButtonProps) {
   return (
     <button
       className={cn(
-        'inline-flex h-10 items-center justify-center gap-2 rounded-lg px-4 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-cyan-300 disabled:pointer-events-none disabled:opacity-50',
+        'inline-flex shrink-0 items-center justify-center gap-2 rounded-button font-semibold transition duration-hover disabled:pointer-events-none disabled:opacity-50',
         variants[variant],
+        sizes[size],
         className,
       )}
       {...props}
